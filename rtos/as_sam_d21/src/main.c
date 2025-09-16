@@ -40,6 +40,7 @@ void tarefa_5(void);
 void tarefa_6(void);
 void tarefa_7(void);
 void tarefa_8(void);
+void tarefa_9(void);
 
 /*
  * Configuracao dos tamanhos das pilhas
@@ -52,6 +53,7 @@ void tarefa_8(void);
 #define TAM_PILHA_6			(TAM_MINIMO_PILHA + 24)
 #define TAM_PILHA_7			(TAM_MINIMO_PILHA + 24)
 #define TAM_PILHA_8			(TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_9			(TAM_MINIMO_PILHA + 24)
 #define TAM_PILHA_OCIOSA	(TAM_MINIMO_PILHA + 24)
 
 /*
@@ -65,6 +67,7 @@ uint32_t PILHA_TAREFA_5[TAM_PILHA_5];
 uint32_t PILHA_TAREFA_6[TAM_PILHA_6];
 uint32_t PILHA_TAREFA_7[TAM_PILHA_7];
 uint32_t PILHA_TAREFA_8[TAM_PILHA_8];
+uint32_t PILHA_TAREFA_9[TAM_PILHA_9];
 uint32_t PILHA_TAREFA_OCIOSA[TAM_PILHA_OCIOSA];
 
 /*
@@ -244,5 +247,19 @@ void tarefa_8(void)
 		f = (f+1) % TAM_BUFFER;		
 		
 		SemaforoLibera(&SemaforoVazio);
+	}
+}
+
+void tarefa_9(void)
+{
+    int n = 20;
+	long int termo1 = 0, termo2 = 1;
+	long int proximo_termo;
+
+	for (int i = 3; i <= n; ++i) 
+	{
+    	proximo_termo = termo1 + termo2;
+    	termo1 = termo2;
+    	termo2 = proximo_termo;
 	}
 }
