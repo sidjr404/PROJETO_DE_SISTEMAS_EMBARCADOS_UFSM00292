@@ -41,20 +41,22 @@ void tarefa_6(void);
 void tarefa_7(void);
 void tarefa_8(void);
 void tarefa_9(void);
+void tarefa_10(void);
 
 /*
  * Configuracao dos tamanhos das pilhas
  */
-#define TAM_PILHA_1			(TAM_MINIMO_PILHA + 24)
-#define TAM_PILHA_2			(TAM_MINIMO_PILHA + 24)
-#define TAM_PILHA_3			(TAM_MINIMO_PILHA + 24)
-#define TAM_PILHA_4			(TAM_MINIMO_PILHA + 24)
-#define TAM_PILHA_5			(TAM_MINIMO_PILHA + 24)
-#define TAM_PILHA_6			(TAM_MINIMO_PILHA + 24)
-#define TAM_PILHA_7			(TAM_MINIMO_PILHA + 24)
-#define TAM_PILHA_8			(TAM_MINIMO_PILHA + 24)
-#define TAM_PILHA_9			(TAM_MINIMO_PILHA + 24)
-#define TAM_PILHA_OCIOSA	(TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_1			    (TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_2			    (TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_3			    (TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_4			    (TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_5			    (TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_6			    (TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_7			    (TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_8			    (TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_9			    (TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_10			(TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_OCIOSA	    (TAM_MINIMO_PILHA + 24)
 
 /*
  * Declaracao das pilhas das tarefas
@@ -86,6 +88,9 @@ int main(void)
 	CriaTarefa(tarefa_1, "Tarefa 1", PILHA_TAREFA_1, TAM_PILHA_1, 2);
 	
 	CriaTarefa(tarefa_2, "Tarefa 2", PILHA_TAREFA_2, TAM_PILHA_2, 1);
+
+	// Cria a tarefa 10 com prioridade 3.
+	CriaTarefa(tarefa_10, "Tarefa 10 - Pisca", PILHA_TAREFA_10, TAM_PILHA_10, 3);
 	
 	/* Cria tarefa ociosa do sistema */
 	CriaTarefa(tarefa_ociosa,"Tarefa ociosa", PILHA_TAREFA_OCIOSA, TAM_PILHA_OCIOSA, 0);
@@ -261,5 +266,17 @@ void tarefa_9(void)
     	proximo_termo = termo1 + termo2;
     	termo1 = termo2;
     	termo2 = proximo_termo;
+	}
+}
+
+void tarefa_10(void)
+{
+	for(;;)
+	{
+		// Inverte o estado atual do pino do LED.
+		port_pin_toggle_output_level(LED_0_PIN);
+		
+		// Suspende a tarefa por 100ms.
+		TarefaEspera(100);
 	}
 }
