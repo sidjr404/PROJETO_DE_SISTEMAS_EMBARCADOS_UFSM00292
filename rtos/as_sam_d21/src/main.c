@@ -280,3 +280,10 @@ void tarefa_10(void)
 		TarefaEspera(100);
 	}
 }
+/*
+Cooperativo: As tarefas executam até que voluntariamente liberem a CPU,
+chamando funções como TarefaEspera() ou aguardando um semáforo. Uma tarefa mal escrita pode travar todo o sistema.
+
+Preemptivo: O sistema operacional (escalonador) pode interromper uma tarefa a qualquer momento (geralmente por um timer) para dar a vez a outra de maior prioridade.
+Isso garante que tarefas críticas sempre tenham preferência, tornando o sistema mais responsivo e robusto.
+ */
